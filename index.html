@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Stan | Trending Playlists</title>
+    
+    <!-- Tab Icon (Favicon) -->
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/727/727218.png" type="image/png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (for modern styling) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212; /* Spotify Dark */
+            color: white;
+        }
+
+        /* smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121212;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #555;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1DB954;
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(29, 185, 84, 0.2);
+        }
+        
+        .play-btn-overlay {
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translateY(10px);
+        }
+        .card-hover:hover .play-btn-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #1DB954, #1ed760);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-black/90 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-2">
+                    <i data-lucide="music" class="w-8 h-8 text-[#1DB954]"></i>
+                    <span class="text-2xl font-bold tracking-tighter">Music<span class="text-[#1DB954]">Stan</span></span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="https://open.spotify.com/" target="_blank" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition">
+                        Open Web Player
+                    </a>
+                    <a href="https://www.spotify.com/us/download/windows/" target="_blank" class="bg-white text-black hover:bg-[#1DB954] hover:text-white px-6 py-2 rounded-full text-sm font-bold transition transform hover:scale-105">
+                        Download App
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i data-lucide="menu" class="w-8 h-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-zinc-900 border-b border-zinc-800 p-4 space-y-3">
+             <a href="https://open.spotify.com/" target="_blank" class="block text-gray-300 hover:text-[#1DB954]">Open Web Player</a>
+             <a href="https://www.spotify.com/us/download/windows/" target="_blank" class="block text-gray-300 hover:text-[#1DB954]">Download App</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative bg-gradient-to-b from-zinc-900 to-[#121212] py-16 sm:py-24 text-center px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex justify-center mb-6">
+                <!-- Spotify Logo -->
+                <img src="spotify.png" alt="Spotify" class="h-12 md:h-16 object-contain">
+            </div>
+            <h1 class="text-4xl sm:text-6xl font-extrabold mb-6 tracking-tight">
+                Trending Playlists <br>
+                <span class="gradient-text">Across 5 Languages</span>
+            </h1>
+            <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
+                Curated top hits from Tamil, Telugu, Malayalam, Kannada, and Hindi. Scroll down to vibe with the rhythm.
+            </p>
+            <div class="animate-bounce mt-4">
+                <i data-lucide="chevron-down" class="w-8 h-8 mx-auto text-gray-500"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content Grid -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        
+        <div class="flex items-center mb-8">
+            <h2 class="text-2xl font-bold text-white">Editors' Picks</h2>
+            <div class="h-px bg-gray-800 flex-grow ml-6"></div>
+        </div>
+
+        <!-- Grid Container -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+
+            <!-- Card 1: Tamil -->
+            <a href="https://open.spotify.com/playlist/37i9dQZF1DWVo4cdnikh7Z" target="_blank" class="group relative bg-[#181818] rounded-xl overflow-hidden hover:bg-[#282828] transition duration-300 card-hover block">
+                <div class="relative aspect-square overflow-hidden">
+                    <img src="play.jpg" alt="Tamil Hits" class="object-cover w-full h-full group-hover:scale-105 transition duration-500">
+                    <!-- Play Button Overlay -->
+                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center play-btn-overlay">
+                        <div class="bg-[#1DB954] text-black rounded-full p-4 shadow-lg transform hover:scale-110 transition">
+                            <i data-lucide="play" class="w-8 h-8 fill-current"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold mb-1 text-white">Latest Tamil</h3>
+                    <p class="text-sm text-gray-400 line-clamp-2">The hottest tracks from Kollywood topping the charts right now.</p>
+                </div>
+            </a>
+
+            <!-- Card 2: Telugu -->
+            <a href="https://open.spotify.com/playlist/37i9dQZF1DX6XE7HRLM75P" target="_blank" class="group relative bg-[#181818] rounded-xl overflow-hidden hover:bg-[#282828] transition duration-300 card-hover block">
+                <div class="relative aspect-square overflow-hidden">
+                    <img src="tel.jpg" alt="Telugu Hits" class="object-cover w-full h-full group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center play-btn-overlay">
+                        <div class="bg-[#1DB954] text-black rounded-full p-4 shadow-lg transform hover:scale-110 transition">
+                            <i data-lucide="play" class="w-8 h-8 fill-current"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold mb-1 text-white">Telugu Hot Hits</h3>
+                    <p class="text-sm text-gray-400 line-clamp-2">Tollywood's biggest blockbusters and melodic beats.</p>
+                </div>
+            </a>
+
+            <!-- Card 3: Malayalam -->
+            <a href="https://open.spotify.com/playlist/37i9dQZF1DWTYKFynxp6Fs?si=4e9bacb07a48420f" target="_blank" class="group relative bg-[#181818] rounded-xl overflow-hidden hover:bg-[#282828] transition duration-300 card-hover block">
+                <div class="relative aspect-square overflow-hidden">
+                    <img src="mal.jpg" alt="Malayalam Hits" class="object-cover w-full h-full group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center play-btn-overlay">
+                        <div class="bg-[#1DB954] text-black rounded-full p-4 shadow-lg transform hover:scale-110 transition">
+                            <i data-lucide="play" class="w-8 h-8 fill-current"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold mb-1 text-white">Trending Malayalam</h3>
+                    <p class="text-sm text-gray-400 line-clamp-2">Soulful melodies and groovy tracks from Mollywood.</p>
+                </div>
+            </a>
+
+            <!-- Card 4: Kannada -->
+            <a href="https://open.spotify.com/playlist/37i9dQZF1DWZqTcNLmb3sH?si=e44720fd1ec04438" target="_blank" class="group relative bg-[#181818] rounded-xl overflow-hidden hover:bg-[#282828] transition duration-300 card-hover block">
+                <div class="relative aspect-square overflow-hidden">
+                    <img src="kan.jpg" alt="Kannada Hits" class="object-cover w-full h-full group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center play-btn-overlay">
+                        <div class="bg-[#1DB954] text-black rounded-full p-4 shadow-lg transform hover:scale-110 transition">
+                            <i data-lucide="play" class="w-8 h-8 fill-current"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold mb-1 text-white">Latest Kannada</h3>
+                    <p class="text-sm text-gray-400 line-clamp-2">Sandalwood's finest beats and latest releases.</p>
+                </div>
+            </a>
+
+            <!-- Card 5: Hindi -->
+            <a href="https://open.spotify.com/playlist/37i9dQZF1DWXtlo6ENS92N?si=1533be14284e4b85" target="_blank" class="group relative bg-[#181818] rounded-xl overflow-hidden hover:bg-[#282828] transition duration-300 card-hover block">
+                <div class="relative aspect-square overflow-hidden">
+                    <img src="hindi.jpg" alt="Bollywood Hits" class="object-cover w-full h-full group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center play-btn-overlay">
+                        <div class="bg-[#1DB954] text-black rounded-full p-4 shadow-lg transform hover:scale-110 transition">
+                            <i data-lucide="play" class="w-8 h-8 fill-current"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold mb-1 text-white">Bollywood Butter</h3>
+                    <p class="text-sm text-gray-400 line-clamp-2">The ultimate collection of Bollywood chartbusters.</p>
+                </div>
+            </a>
+            
+             <!-- Placeholder Card (Call to Action) -->
+             <div class="group relative bg-[#121212] border-2 border-dashed border-gray-700 rounded-xl overflow-hidden flex flex-col items-center justify-center p-6 text-center hover:border-[#1DB954] transition duration-300">
+                <div class="bg-gray-800 rounded-full p-4 mb-4 group-hover:bg-[#1DB954] group-hover:text-black transition">
+                    <i data-lucide="headphones" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-300 group-hover:text-white">More Coming Soon</h3>
+                <p class="text-sm text-gray-500 mt-2">Stay tuned for English and Punjabi hits.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gray-900 py-10">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-center md:justify-between items-center text-center md:text-left gap-4">
+            <div>
+                <span class="text-2xl font-bold tracking-tighter">Music<span class="text-[#1DB954]">Stan</span></span>
+                <p class="text-gray-500 text-sm mt-1">Made with ❤️ for music lovers.</p>
+            </div>
+            
+            <a href="https://www.instagram.com/its2muchmv/" target="_blank" class="flex items-center gap-2 text-gray-400 hover:text-[#1DB954] transition">
+                <i data-lucide="instagram" class="w-5 h-5"></i>
+                <span class="font-medium">By ManishV</span>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Initialize Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
